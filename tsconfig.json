@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "sourceRoot": "src/index.ts",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "test/**/*.test.ts"],
+  "exclude": ["node_modules"]
+}
