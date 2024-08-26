@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { installAllDependencies } from "../src/commands/install";
-import { DEFAULT_PACKAGE_JSON } from "../src/util/packageJson";
-import { nodeModulesPath, outputDir, packageJsonPath } from "../src/util/paths";
+import { DEFAULT_PACKAGE_JSON } from "../util/packageJson";
+import { nodeModulesPath, outputDir, packageJsonPath } from "../util/paths";
+import { installAllDependencies } from "./install";
 
 describe("npm install function", () => {
   it("should install is-thirteen", async () => {

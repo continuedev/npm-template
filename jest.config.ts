@@ -8,5 +8,5 @@ export default {
   },
   extensionsToTreatAsEsm: [".ts"],
   preset: "ts-jest/presets/default-esm",
-  roots: ["<rootDir>/test"],
+  roots: ["<rootDir>/src"],
 };

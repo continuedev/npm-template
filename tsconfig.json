@@ -10,6 +10,6 @@
     "sourceRoot": "src/index.ts",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "test/**/*.test.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
