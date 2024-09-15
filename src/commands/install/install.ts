@@ -4,21 +4,6 @@ import { nodeModulesPath, packageJsonPath } from "../../util/paths";
 import { constructInstallationPlan } from "./TODO";
 
 /**
- * name: the name of the dependency
- * version: the version of the dependency
- * parentDirectory: if undefined, we install at the root of node_modules. Otherwise, this string defines
- * the relative path starting from node_modules of the parent folder where this dependency should be installed
- */
-export type DependencyInstallation = {
-  name: string;
-  version: string;
-  parentDirectory?: string;
-};
-
-// An installation plan specifies which versions of dependencies to install and where to install them
-export type InstallationPlan = DependencyInstallation[];
-
-/**
  * This is the function that is called when the `install` CLI command is run
  */
 export async function installAllDependencies() {

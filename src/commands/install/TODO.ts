@@ -1,4 +1,4 @@
-import { InstallationPlan } from "./install";
+import { InstallationPlan } from "../../types";
 
 /**
  *

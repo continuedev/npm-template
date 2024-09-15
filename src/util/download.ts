@@ -1,7 +1,7 @@
 import fs from "fs";
 import https from "https";
 import path from "path";
-import { Dependency } from "../types";
+import { Dependency, DependencyInstallation } from "../types";
 import { nodeModulesPath } from "./paths";
 const tar = require("tar");
 
@@ -34,7 +34,7 @@ export async function getPackageInfo(dep: Dependency): Promise<any> {
 }
 
 async function downloadToNodeModules(
-  dep: Dependency,
+  dep: DependencyInstallation,
   shasum: string
 ): Promise<void> {
   // Construct the download URL
@@ -83,11 +83,14 @@ async function downloadToNodeModules(
   }
 
   // Move to target directory
-  const destPath = path.join(nodeModulesPath, dep.name);
+  const destParentPath = dep.parentDirectory
+    ? path.join(nodeModulesPath, dep.parentDirectory)
+    : nodeModulesPath;
+  const destPath = path.join(destParentPath, dep.name);
   fs.renameSync(path.join(nodeModulesPath, "package"), destPath);
 }
 
-async function installSinglePackage(dep: Dependency) {
+async function installSinglePackage(dep: DependencyInstallation) {
   console.log(`Installing ${dep.name}@${dep.version}...`);
 
   try {

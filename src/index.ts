@@ -1,5 +1,5 @@
 import { program } from "commander";
-import { addPackage } from "./commands/add";
+import { addPackage } from "./commands/add/add";
 import { installAllDependencies } from "./commands/install/install";
 
 /**
