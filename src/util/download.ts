@@ -3,6 +3,7 @@ import https from "https";
 import path from "path";
 import { Dependency, DependencyInstallation } from "../types";
 import { nodeModulesPath } from "./paths";
+import { getPackageInfo } from "./registry";
 const tar = require("tar");
 
 export async function installPackages(
@@ -11,26 +12,6 @@ export async function installPackages(
   for (const dep of dependencies) {
     await installSinglePackage(dep);
   }
-}
-
-export async function getPackageInfo(dep: Dependency): Promise<any> {
-  if (!dep.name || !dep.version) {
-    throw new Error("Invalid dependency object");
-  }
-  const absoluteVersion = (
-    dep.version.startsWith("^") ? dep.version.slice(1) : dep.version
-  ).split(" ")[0];
-  const resp = await fetch(
-    `https://registry.npmjs.org/${dep.name}/${absoluteVersion}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    }
-  );
-  const data = await resp.json();
-  return data;
 }
 
 async function downloadToNodeModules(
@@ -86,11 +67,14 @@ async function downloadToNodeModules(
   const destParentPath = dep.parentDirectory
     ? path.join(nodeModulesPath, dep.parentDirectory)
     : nodeModulesPath;
+  if (!fs.existsSync(destParentPath)) {
+    fs.mkdirSync(destParentPath, { recursive: true });
+  }
   const destPath = path.join(destParentPath, dep.name);
   fs.renameSync(path.join(nodeModulesPath, "package"), destPath);
 }
 
-async function installSinglePackage(dep: DependencyInstallation) {
+export async function installSinglePackage(dep: DependencyInstallation) {
   console.log(`Installing ${dep.name}@${dep.version}...`);
 
   try {
