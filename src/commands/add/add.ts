@@ -1,7 +1,7 @@
 import fs from "fs";
-import { getPackageInfo } from "../util/download";
-import { DEFAULT_PACKAGE_JSON } from "../util/packageJson";
-import { outputDir, packageJsonPath } from "../util/paths";
+import { getPackageInfo } from "../../util/download";
+import { DEFAULT_PACKAGE_JSON } from "../../util/packageJson";
+import { outputDir, packageJsonPath } from "../../util/paths";
 
 export async function addPackage(pkg: string) {
   let [packageName, version] = pkg.split("@");

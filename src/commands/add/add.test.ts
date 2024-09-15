@@ -1,6 +1,6 @@
 import fs from "fs";
-import { addPackage } from "../commands/add";
-import { packageJsonPath } from "../util/paths";
+import { packageJsonPath } from "../../util/paths";
+import { addPackage } from "./add";
 
 describe("npm add function", () => {
   it("should add package to package.json with exact version", async () => {

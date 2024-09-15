@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { DEFAULT_PACKAGE_JSON } from "../util/packageJson";
-import { nodeModulesPath, outputDir, packageJsonPath } from "../util/paths";
+import { DEFAULT_PACKAGE_JSON } from "../../util/packageJson";
+import { nodeModulesPath, outputDir, packageJsonPath } from "../../util/paths";
 import { installAllDependencies } from "./install";
 
 describe("npm install function", () => {
