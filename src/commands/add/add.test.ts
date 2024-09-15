@@ -11,7 +11,7 @@ describe("npm add function", () => {
     expect(packageJson.dependencies["is-fourteen"]).toBe("0.0.14");
   });
 
-  it.only("should add package with latest version", async () => {
+  it("should add package with latest version", async () => {
     await addPackage("is-thirteen");
     const packageJson = JSON.parse(
       await fs.promises.readFile(packageJsonPath, "utf8")

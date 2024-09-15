@@ -1,5 +1,6 @@
 import fs from "fs";
 import { installPackages } from "../../util/download";
+import { DEFAULT_PACKAGE_JSON } from "../../util/packageJson";
 import { nodeModulesPath, packageJsonPath } from "../../util/paths";
 import { constructInstallationPlan } from "./TODO";
 
@@ -14,6 +15,14 @@ export async function installAllDependencies() {
     fs.rmSync(nodeModulesPath, { recursive: true });
   }
   fs.mkdirSync(nodeModulesPath);
+
+  // Make sure package.json exists
+  if (!fs.existsSync(packageJsonPath)) {
+    fs.writeFileSync(
+      packageJsonPath,
+      JSON.stringify(DEFAULT_PACKAGE_JSON, undefined, 2)
+    );
+  }
 
   // Get top-level dependencies from package.json
   const topLevelDependencies: Record<string, string> = JSON.parse(
